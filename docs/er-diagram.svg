@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="820" viewBox="0 0 1220 820">
+  <defs>
+    <style>
+      .bg { fill: #f5f7f8; }
+      .entity { fill: #ffffff; stroke: #1f6f6d; stroke-width: 2; rx: 8; }
+      .title { fill: #0f3f3e; font: 700 18px Arial, sans-serif; }
+      .field { fill: #24313d; font: 14px Arial, sans-serif; }
+      .key { fill: #9a6511; font: 700 14px Arial, sans-serif; }
+      .line { stroke: #51606d; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .label { fill: #51606d; font: 13px Arial, sans-serif; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#51606d"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1220" height="820"/>
+  <text x="610" y="42" text-anchor="middle" class="title" font-size="26">Smart Lender - Entity Relationship Diagram</text>
+
+  <rect class="entity" x="60" y="90" width="260" height="190"/>
+  <text class="title" x="84" y="124">USER</text>
+  <text class="key" x="84" y="158">PK user_id</text>
+  <text class="field" x="84" y="184">name</text>
+  <text class="field" x="84" y="210">email</text>
+  <text class="field" x="84" y="236">role</text>
+  <text class="field" x="84" y="262">password</text>
+
+  <rect class="entity" x="480" y="85" width="300" height="250"/>
+  <text class="title" x="504" y="119">APPLICANT_PROFILE</text>
+  <text class="key" x="504" y="153">PK applicant_id</text>
+  <text class="key" x="504" y="179">FK user_id</text>
+  <text class="field" x="504" y="205">gender, married, dependents</text>
+  <text class="field" x="504" y="231">education, self_employed</text>
+  <text class="field" x="504" y="257">applicant_income</text>
+  <text class="field" x="504" y="283">coapplicant_income</text>
+  <text class="field" x="504" y="309">property_area</text>
+
+  <rect class="entity" x="900" y="115" width="260" height="170"/>
+  <text class="title" x="924" y="149">CREDIT_HISTORY</text>
+  <text class="key" x="924" y="183">PK credit_id</text>
+  <text class="key" x="924" y="209">FK applicant_id</text>
+  <text class="field" x="924" y="235">credit_history</text>
+  <text class="field" x="924" y="261">previous_defaults, credit_score</text>
+
+  <rect class="entity" x="260" y="490" width="290" height="190"/>
+  <text class="title" x="284" y="524">LOAN_APPLICATION</text>
+  <text class="key" x="284" y="558">PK application_id</text>
+  <text class="key" x="284" y="584">FK applicant_id</text>
+  <text class="field" x="284" y="610">loan_amount</text>
+  <text class="field" x="284" y="636">loan_amount_term</text>
+  <text class="field" x="284" y="662">application_date, status</text>
+
+  <rect class="entity" x="690" y="500" width="300" height="190"/>
+  <text class="title" x="714" y="534">PREDICTION_RESULT</text>
+  <text class="key" x="714" y="568">PK prediction_id</text>
+  <text class="key" x="714" y="594">FK application_id</text>
+  <text class="key" x="714" y="620">FK model_id</text>
+  <text class="field" x="714" y="646">prediction_output</text>
+  <text class="field" x="714" y="672">confidence_score, prediction_date</text>
+
+  <rect class="entity" x="60" y="500" width="170" height="170"/>
+  <text class="title" x="84" y="534">MODEL</text>
+  <text class="key" x="84" y="568">PK model_id</text>
+  <text class="field" x="84" y="594">model_name</text>
+  <text class="field" x="84" y="620">algorithm</text>
+  <text class="field" x="84" y="646">training_accuracy</text>
+  <text class="field" x="84" y="672">testing_accuracy</text>
+
+  <path class="line" d="M 320 185 C 380 185, 410 185, 480 185"/>
+  <text class="label" x="352" y="168">1 user has many profiles</text>
+
+  <path class="line" d="M 780 190 C 835 190, 850 190, 900 190"/>
+  <text class="label" x="800" y="172">1 profile owns 1 credit history</text>
+
+  <path class="line" d="M 585 335 C 515 405, 455 430, 410 490"/>
+  <text class="label" x="430" y="420">1 profile submits many applications</text>
+
+  <path class="line" d="M 550 585 C 610 585, 630 585, 690 585"/>
+  <text class="label" x="574" y="565">1 application generates 1 result</text>
+
+  <path class="line" d="M 230 585 C 400 735, 570 735, 690 635"/>
+  <text class="label" x="330" y="742">1 model produces many predictions</text>
+</svg>

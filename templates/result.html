@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ result }} | Smart Lender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="result-layout">
+      <section class="decision-panel {{ status }}" aria-labelledby="decision-title">
+        <p class="eyebrow">Prediction Result</p>
+        <h1 id="decision-title">{{ result }}</h1>
+        <div class="decision-meta">
+          <span>Model: {{ model_name }}</span>
+          {% if confidence is not none %}
+            <span>Confidence: {{ confidence }}%</span>
+          {% endif %}
+        </div>
+        <a href="{{ url_for('index') }}" class="primary-link">Evaluate Another Applicant</a>
+      </section>
+
+      <section class="detail-panel" aria-label="Submitted applicant data">
+        <h2>Submitted Profile</h2>
+        <dl class="detail-list">
+          {% for label, value in applicant.items() %}
+            <div>
+              <dt>{{ label.replace("_", " ") }}</dt>
+              <dd>{{ value }}</dd>
+            </div>
+          {% endfor %}
+        </dl>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
